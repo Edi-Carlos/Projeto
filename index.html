@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <style>
+        body{
+            margin: 40%;
+            background-color: white;
+            box-shadow: 5px  black;
+            
+
+        }
+        h2{
+            background-color: darkslategrey;
+            color: darkgray;
+            border: 2px black ;
+            box-shadow: 5px 5px black;
+            padding: 20px;
+
+
+        }
+        h1{
+            text-align: center;
+            border: 20px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <h1>Formulário</h1>
+    <form name="submit-to-google-sheet1">    
+<h2>Diga o melhor jogo dessa lista, na sua opinião.</h2>
+
+
+<select name="time">
+    <option value="Silent hill">Silent hill</option>
+    <option value="Dead Space">Dead Space</option>
+    <option value="Resident Evil">Resident Evil</option>
+    <option value="Hauting Ground">Hauting Ground</option>
+</select>
+
+
+<h2>Qual desses itens e o melhor para a sobrevivencia nesses jogos?</h2>
+<input name="item1" type="checkbox" value="sim" >
+<label name="item1" for="item1">
+    Ak47 - Pente estendido - 120 muniçoes
+</label>
+
+
+
+<input name="item2" type="checkbox" value="sim" >
+<label name="item2" for="item2">
+    Katana super afiada
+</label>
+
+
+<h2>Você ja pensou em como você sobreviveria as situaçoes desses jogos?</h2>
+<input name="ja estou preparado(a)." type="radio" value="sim" >
+<label name="ja estou preparado(a)." for="ja estou preparado(a).">
+ ja estou preparado(a).
+ </label>
+ <input name="nao acho que morreria facilmente." type="radio" value="não" >
+<label name="nao acho que morreria facilmente." for="nao acho que morreria facilmente.">
+ nao acho que morreria facilmente.
+ </label>
+
+
+<h2>Em uma chance de 10 a 100 qual a chance de sua sobrevivencia?</h2>
+<input name="vezes" type="checkbox" id="inlineCheckbox1" value="0">
+<label name="vezes" for="inlineCheckbox1">10</label>
+<input name="vezes" type="checkbox" id="inlineCheckbox1" value="1a3">
+<label name="vezes" for="inlineCheckbox1">20</label>
+<input name="vezes" type="checkbox" id="inlineCheckbox1" value="3a7">
+<label name="vezes" for="inlineCheckbox1">50</label>
+<input name="vezes" type="checkbox" id="inlineCheckbox1" value=">7">
+<label name="vezes" for="inlineCheckbox1">100</label>
+
+
+
+<h2>Deixe um comentario de como poderiamos sobreviver a esses tipos de situaçoes.</h2>
+<input name="sugestao" type="text" placeholder="Mensagem">
+<button type="submit">Cadastre</button>
+</form>
+
+
+
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycby_jb1rpJRDFDUrL8UMklRYVAQB_RkfzSyvwtFneCIWRMVtr3WO9_k0kEiipcPMpgkJCg/exec'
+    const form = document.forms['submit-to-google-sheet1']
+  
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => console.log('Success!', response))
+        .catch(error => console.error('Error!', error.message))
+      form.reset();
+    })
+  </script>
